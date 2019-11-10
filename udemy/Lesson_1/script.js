@@ -12,4 +12,4 @@ console.log("Женат " + person.isMarried);
 
 // let answerUser = prompt ("Есть ли вам 18?", "yes");
 
-// console.log(answerUser);
+console.log(answerUser);
