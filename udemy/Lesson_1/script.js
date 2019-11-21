@@ -22,6 +22,7 @@ let appData = {
     expenses: {},
     optionalExpenses:{},
     income: [],
+<<<<<<< refs/remotes/origin/master
     savings: true,
 
     chooseExpenses: function() {
@@ -109,3 +110,66 @@ let appData = {
 for (let key in appData) {
     console.log("Наша программа включает в себя данные: " + key + "-" + appData);
 }
+=======
+    savings: true, 
+    chooseExpenses: function () {
+        for (let i = 0; i < 2; i++) {
+            let a = prompt("Введите обязательную статью расходов в этом месяце", ''),   
+                b = +prompt("Во сколько обойдется", '');
+        
+            if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && (typeof(b)) != null && b != '' && a.length < 50) {
+                appData.expenses[a] = b;
+                console.log("Expenses save");
+            } else {
+                i--;
+            }
+        }
+    },
+
+    detectDayBudget: function () {
+        appData.budgetPerDay = (appData.budget/30).toFixed(2),
+        alert("Ваш бюджет на 1 день "+ appData.budgetPerDay + " руб.");
+        console.log("Budget per day - save");
+    },
+
+    detectLevel: function () {
+        if (appData.budgetPerDay < 100) {
+            alert("Бюджет меньше 100 руб.");
+        } else if ((500 < appData.budgetPerDay) && (appData.budgetPerDay < 1000)) {
+            alert("Бюджет средний больше 500руб.");
+        } else if (appData.budgetPerDay > 1000) {
+            alert("Да вы богач!");
+        }
+    },
+
+    checkSavings: function () {
+        if (appData.savings == true) {
+            let save = +prompt(" Какова сумма накоплений"),
+                percent = +prompt("Под какой процент");
+            
+            appData.monthIncome = save/100/12*percent;
+            alert("Ваш доход с депозита " + appData.monthIncome + " руб");
+        }
+    },
+
+    chooseOptExpenses: function () {
+        for (i = 1; i <= 3; i++) {
+            let a = prompt("Статья необязательных расходов");
+    
+            appData.optionalExpenses[i] = a;
+            console.log("OptExpenses save-" + appData.optionalExpenses);
+        }
+    },
+
+    chooseIncom: function () {
+        let items = prompt("Что приност дополнительный доход? (Перечислите через запятую)", "");
+        if (typeof(items) !== null && items != '' && typeof(items) === 'string' && items !== false) {
+            appData.income = items.split(', ');
+            appData.income.push (prompt('Что еще?'));
+            appData.income.sort();
+        } else {
+            console.log("Вы не заполнили ни чего");
+        }
+    }
+};
+>>>>>>> objecs
