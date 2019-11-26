@@ -39,3 +39,17 @@ let mass = [1, 2, 3, 4, 5];
 for (let key of mass) {
     console.log(key);
 }
+
+
+let ans = prompt("","");
+
+    arr = [];
+arr = ans.split(', ');
+
+console.log(arr);
+
+
+let artr = ['rkot', 'ad', 'sd'],
+    i = artr.join(', '); 
+
+    console.log(artr);

@@ -76,10 +76,24 @@ let appData = {
     },
 
     shooseIncom: function () {
+        for (let i = 0; i < 1; i++) {      
         let items = prompt ("Что приносит дополнительный доход? (Перечислить через запятую)", '');
-        appData.income = items.split(', ');
-        appData.income.push(prompt("Вы можете занести еще", ''));
-        appData.income.sort();
+        
+        if((typeof(items)) === 'string' && items != '' && (typeof (items)) != null ) {
+            appData.income = items.split(', '); 
+            appData.income.push(prompt("Вы можете занести еще", ''));
+            appData.income.sort();
+            console.log("shooseIncom - added");
 
+        } else {            
+            console.log("shooseIncom - not added");
+            i--;
+            }
+        }
+
+        appData.shooseIncom.forEach(function (items) {
+            console.log(items);
+        });
     }
+
 };
