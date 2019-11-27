@@ -49,7 +49,16 @@ arr = ans.split(', ');
 console.log(arr);
 
 
-let artr = ['rkot', 'ad', 'sd'],
+let app = {arr: ['rkot', 'ad', 'sd']},
     i = artr.join(', '); 
 
     console.log(artr);
+
+let appD = {arr: ['rkot', 'ad', 'sd']};
+
+appD.arr.forEach(function(item) {
+    console.log(item);
+});
+
+let y = 1; let x = y = 2;
+console.log([1, 2] + 1 + 2);

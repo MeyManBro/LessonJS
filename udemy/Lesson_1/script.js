@@ -32,6 +32,7 @@ let appData = {
             if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && (typeof(b)) != null && b != '' && a.length < 50) {
                 appData.expenses[a] = b;
                 console.log("Expenses save");
+                
             } else {
                 i--;
             }
@@ -53,6 +54,8 @@ let appData = {
             alert("Бюджет средний больше 500руб.");
         } else if (appData.budgetPerDay > 1000) {
             alert("Да вы богач!");
+        } else {
+            alert("Что то не так...");
         }
     },
 
@@ -75,25 +78,34 @@ let appData = {
         }
     },
 
-    shooseIncom: function () {
+    // ввод статей доплнительного дохода
+    chooseIncome: function () {
         for (let i = 0; i < 1; i++) {      
         let items = prompt ("Что приносит дополнительный доход? (Перечислить через запятую)", '');
         
-        if((typeof(items)) === 'string' && items != '' && (typeof (items)) != null ) {
+        if((typeof(items)) === 'string' || items != '' || (typeof (items)) != null ) {
             appData.income = items.split(', '); 
             appData.income.push(prompt("Вы можете занести еще", ''));
             appData.income.sort();
-            console.log("shooseIncom - added");
+            console.log("chooseIncom - added");
+            
 
         } else {            
-            console.log("shooseIncom - not added");
+            console.log("chooseIncom - not added");
             i--;
             }
         }
 
-        appData.shooseIncom.forEach(function (items) {
-            console.log(items);
+        appData.income.forEach(function (items, i) {
+            alert("Способы доп. заработка: "+ (i + 1) + "-" + items );
         });
+       
+        
     }
 
 };
+
+// вывод данных объекта appData
+for (let key in appData) {
+    console.log("Наша программа включает в себя данные: " + key + "-" + appData);
+}
