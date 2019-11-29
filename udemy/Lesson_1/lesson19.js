@@ -24,4 +24,6 @@ let div = document.createElement('div');
 div.classList.add('black');
 
 document.body.appendChild(div);
+// div.innerHTML = 'Hello';
+div.textContent = 'Hello';
 console.log(div);
