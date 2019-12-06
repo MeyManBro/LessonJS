@@ -21,19 +21,12 @@ let startBtn = document.getElementById('start'), //выбрать по id start
     precentSavings = document.querySelector('#percent'), // input процент годовых накоплений
     year = document.querySelector('.year-value'), // input год
     month = document.querySelector('.month-value'), // input месяц
-    day = document.querySelector('.day-value'); // input день
+    day = document.querySelector('.day-value'), // input день
 
+    budgetMonth, data;
 
-let budgetMonth, data;
-
+// выполнение функци по событию нажатия на кнопку startBtn
 // функция запрашивает у пользователя бюджет на месяце + дату 
-function start() {
-
-}
-start();
-
-// выполнение функци по событи нажатия на кнопку startBtn
-
 startBtn.addEventListener('click', function() {
     data = prompt("Введите дату в форамате YYYY-MM-DD", '');
     budgetMonth = +prompt("Какой ваш бюджет на месяц?", '');
@@ -43,8 +36,13 @@ startBtn.addEventListener('click', function() {
         budgetMonth = +prompt("Какой ваш бюджет на месяц?", '');
         console.log("Budget Month -save");
     }
+
+    appData.budget = budgetMonth;
     appData.timeData = data;
-    appData.budget = budgetMonth.to;
+    budgetValue.textContent = budgetMonth.toFixed();
+    year.value = new Date(Date.parse(data)).getFullYear();
+    month.value = new Date(Date.parse(data)).getMonth() + 1;
+    day.value = new Date(Date.parse(data)).getDay();
 });
 
 // создание объкта appData с эелментами
