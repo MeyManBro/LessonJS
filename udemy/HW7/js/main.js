@@ -21,14 +21,14 @@ let startBtn = document.getElementById('start'), //выбрать по id start
     precentSavings = document.querySelector('#percent'), // input процент годовых накоплений
     year = document.querySelector('.year-value'), // input год
     month = document.querySelector('.month-value'), // input месяц
-    day = document.querySelector('.day-value'), // input день
+    day = document.querySelector('.day-value'); // input день
 
-    budgetMonth, data;
+let budgetMonth, date;
 
 // выполнение функци по событию нажатия на кнопку startBtn
 // функция запрашивает у пользователя бюджет на месяце + дату 
 startBtn.addEventListener('click', function() {
-    data = prompt("Введите дату в форамате YYYY-MM-DD", '');
+    date = prompt("Введите дату в форамате YYYY-MM-DD", '');
     budgetMonth = +prompt("Какой ваш бюджет на месяц?", '');
 
     // проверка значения budgetMonth что это только число и не имеет значения пустой строики или null
@@ -38,38 +38,42 @@ startBtn.addEventListener('click', function() {
     }
 
     appData.budget = budgetMonth;
-    appData.timeData = data;
+    appData.timeDate = date;
     budgetValue.textContent = budgetMonth.toFixed();
-    year.value = new Date(Date.parse(data)).getFullYear();
-    month.value = new Date(Date.parse(data)).getMonth() + 1;
-    day.value = new Date(Date.parse(data)).getDay();
+    year.value = new Date(Date.parse(date)).getFullYear();
+    month.value = new Date(Date.parse(date)).getMonth() + 1;
+    day.value = new Date(Date.parse(date)).getDate();
 });
+
+// фунция по расчеты допольнительных расходов
+expensesBtn.addEventListener('click', function() {
+    // функция спрашивает у пользователя обязательны статьи расходов и их стоимость a:b
+    let sum = 0;
+    for (let i = 0; i < expensesItem.length; i++) {
+        let a = expensesItem[i].value,
+            b = expensesItem[++i].value;
+
+        // проверка занчений expensesItem
+        if ((typeof(a)) != null && (typeof(b)) != null && a != '' && b != '' && a.length < 50) {
+            appData.expenses[a] = b;
+            sum += +b;
+        } else {
+            i = i - 1;
+        }
+    }
+    expensesValue.textContent = sum;
+});
+
+
 
 // создание объкта appData с эелментами
 let appData = {
     budget: budgetMonth,
-    timeData: data,
+    timeDate: date,
     expenses: {},
     optionalExpenses: {},
     income: [],
     savings: true,
-
-    // функция спрашивает у пользователя обязательны статьи расходов и их стоимость a:b
-    chooseExpenses: function() {
-        for (let i = 0; i < 2; i++) {
-            let a = prompt("Введите обязательную статью расходов в этом месяце", ''),
-                b = +prompt("Во сколько обойдется", '');
-
-            // проверка ответов согласно условиям ниже
-            if ((typeof(a)) === 'string' && (typeof(a)) != null && a != '' && (typeof(b)) != null && b != '' && a.length < 50) {
-                appData.expenses[a] = b;
-                console.log("Expenses save");
-
-            } else {
-                i--;
-            }
-        }
-    },
 
     // функция расчета бюджета на один день месяца
     detectDayBudget: function() {
