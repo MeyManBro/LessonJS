@@ -47,7 +47,7 @@ startBtn.addEventListener('click', function() {
 
 // фунция по расчеты допольнительных расходов
 expensesBtn.addEventListener('click', function() {
-    // функция спрашивает у пользователя обязательны статьи расходов и их стоимость a:b
+    // функция спрашивает у пользователя обязательны статьи расходов и их стоимость записывает в виде a:b
     let sum = 0;
     for (let i = 0; i < expensesItem.length; i++) {
         let a = expensesItem[i].value,
